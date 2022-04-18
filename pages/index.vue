@@ -28,18 +28,27 @@
               <select v-model="category">
                 <option value="Pesawat">Pesawat</option>
                 <option value="Kereta">Kereta</option>
+                <option value="Bus">Bus</option>
               </select>
             </div>
+            <button
+              class="btn btn-outline-success py-1 px-3 me-4"
+              @click="shuffle"
+            >
+              shuffle
+            </button>
           </div>
         </div>
         <div class="list-task row">
-          <CardItem
-            v-for="(tasks, i) in resultQuery"
-            :key="i"
-            :tasks="tasks"
-            :isGrid="isGrid"
-            :ok="ok"
-          />
+          <transition-group name="tasks" tag="div" class="list-task row">
+            <CardItem
+              v-for="tasks in resultQuery"
+              :key="tasks.id"
+              :tasks="tasks"
+              :isGrid="isGrid"
+              :ok="ok"
+            />
+          </transition-group>
         </div>
         <div class="action py-2">
           <a
@@ -120,6 +129,13 @@ export default {
           category: "Kereta",
           isDone: false,
         },
+        {
+          id: 3,
+          title: "Task 3",
+          description: "ini deskripsi 3",
+          category: "Bus",
+          isDone: false,
+        },
       ],
     };
   },
@@ -148,6 +164,15 @@ export default {
       }
     },
   },
+  methods: {
+    shuffle() {
+      this.tasks = _.shuffle(this.tasks);
+    },
+  },
 };
 </script>
-<style></style>
+<style>
+.tasks-move {
+  transition: 0.4s;
+}
+</style>

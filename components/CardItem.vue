@@ -21,11 +21,11 @@
       ]"
     >
       <div class="title-task mb-1">{{ tasks.title }}</div>
-      <div class="badge bg-success">{{ tasks.category }}</div>
+      <div class="badge bg-danger">{{ tasks.category }}</div>
       <div class="description-task small text-muted">
         {{ tasks.description }}
       </div>
-      <input type="date" class="form control form control-sm" />
+      <input type="date" class="form-control form-control-sm" />
     </div>
   </div>
 </template>
@@ -38,7 +38,6 @@ export default {
       type: Boolean,
       required: true,
       default: false,
-      title: "untitled",
     },
   },
 };

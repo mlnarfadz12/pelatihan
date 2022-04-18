@@ -1,3 +1,5 @@
+import webpack from "webpack";
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -42,5 +44,12 @@ export default {
   modules: [],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    plugins: [
+      new webpack.ProvidePlugin({
+        //global modules
+        _: "lodash",
+      }),
+    ],
+  },
 };
